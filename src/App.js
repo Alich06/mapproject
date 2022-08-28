@@ -1,30 +1,20 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 import Map from "./component/Map";
 import { useState } from "react";
 
-function App() {
-  const [mapurl, setMapurl] = useState("lahore")
-  
+function App() { 
   return (
     
     <>  
     <BrowserRouter>
-      <Routes>
-          <Route path={'/map/' + mapurl } element={<Map/>} />
-      </Routes>
-    </BrowserRouter>
-      
-      <div style={{display:"none"}}>
-        <Map 
-         mapurl={mapurl}
-         setMapurl={setMapurl}
-         />
-      </div>
+    <Routes>
+        <Route path='/map' element={<Map/>} >
+          <Route path=":location"/>
+        </Route>
+        </Routes>
+      </BrowserRouter>
 
-      
-      
-    
   
           </>
 
