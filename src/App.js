@@ -1,24 +1,33 @@
 import React from "react";
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  useLocation
+} from "react-router-dom";
 import Map from "./component/Map";
-import { useState } from "react";
 
-function App() { 
+
+export default function App() {
   return (
-    
-    <>  
-    <BrowserRouter>
-    <Routes>
-        <Route path='/map' element={<Map/>} >
-          <Route path=":location"/>
-        </Route>
-        </Routes>
-      </BrowserRouter>
-
-  
-          </>
-
+    <Router>
+      <QueryParamsDemo />
+    </Router>
   );
 }
 
-export default App;
+function useQuery() {
+  const { search } = useLocation();
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
+function QueryParamsDemo() {
+  let query = useQuery();
+
+  return (
+    <route>
+        <Link hidden to="/?map=?"></Link>
+        <Map map={query.get("map")} />
+    </route>
+  );
+}
+
