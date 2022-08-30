@@ -8,10 +8,12 @@ import Map from "./component/Map";
 
 
 export default function App() {
+  
   return (
     <Router>
       <QueryParamsDemo />
     </Router>
+    
   );
 }
 
@@ -27,7 +29,11 @@ function QueryParamsDemo() {
     <route>
         <Link hidden to="/?map=?"></Link>
         <Map map={query.get("map")} />
+        
     </route>
+    
   );
 }
+
+
 
